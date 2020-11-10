@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { TarefaService } from '../shared/tarefa.service';
+
+import { TarefaVO } from '../shared/tarefa-vo.model';
+
 @Component({
   selector: 'app-listar-tarefa',
   templateUrl: './listar-tarefa.component.html',
@@ -8,9 +12,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarTarefaComponent implements OnInit {
 
-  constructor() { }
+  tarefas: TarefaVO[];
 
-  ngOnInit(): void {
+  constructor(
+    private _tarefaService: TarefaService
+  ) {}
+
+  ngOnInit() {
+    this.tarefas = this.listarTodos();
+    this.tarefas = [
+      new TarefaVO(1, "Tarefa 1", false),
+      new TarefaVO(2, "Tarefa 2", true)
+    ];
+  }
+
+  listarTodos(): TarefaVO[] {
+  	return this._tarefaService.listarTodos();
+  }
+
+  remover($event: any, tarefa: TarefaVO): void {
+    $event.preventDefault();
+    if (confirm('Deseja remover a tarefa "' + tarefa.nome + '"?')) {
+      this._tarefaService.remover(tarefa.id);
+      this.tarefas = this.listarTodos();
+    }
+  }
+
+  alterarStatus(tarefa: TarefaVO): void {
+    if (confirm('Deseja alterar o status da tarefa "' + tarefa.nome + '"?')) {
+      this._tarefaService.alterarStatus(tarefa.id);
+      this.tarefas = this.listarTodos();
+    }
   }
 
 }
