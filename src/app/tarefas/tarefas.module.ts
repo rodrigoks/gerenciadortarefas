@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { ListarTarefaComponent } from './listar/listar-tarefa.component';
 import { CadastrarTarefaComponent } from './cadastrar/cadastrar-tarefa.component';
 import { EditarTarefaComponent } from './editar/editar-tarefa.component';
+import { TarefaConcluidaDirective } from './shared/tarefa-concluida.directive';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { EditarTarefaComponent } from './editar/editar-tarefa.component';
   declarations: [
     ListarTarefaComponent,
     CadastrarTarefaComponent,
-    EditarTarefaComponent
+    EditarTarefaComponent,
+    TarefaConcluidaDirective
   ]
 })
 export class TarefasModule { }
