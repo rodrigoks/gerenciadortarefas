@@ -14,7 +14,7 @@ import { TarefaVO } from '../shared/tarefa-vo.model';
 })
 export class CadastrarTarefaComponent implements OnInit {
 
-  @ViewChild('formTarefa') formTarefa: NgForm;
+  @ViewChild('formTarefa', { static: true }) formTarefa: NgForm;
   tarefa: TarefaVO;
 
   constructor(
